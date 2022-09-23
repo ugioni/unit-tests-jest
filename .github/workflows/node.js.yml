@@ -10,14 +10,14 @@ on:
 
 jobs:
   build:
-    name: Run E2E Tests
+    name: Run Unit Tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js 12
+    - name: Use Node.js 14
       uses: actions/setup-node@v2
       with:
-        node-version: 12
+        node-version: 14
         cache: 'npm'
     - run: npm install      
     - run: npm test
