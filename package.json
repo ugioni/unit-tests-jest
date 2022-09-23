@@ -1,0 +1,21 @@
+{
+  "name": "unit-tests-jest",
+  "version": "1.0.0",
+  "description": "Example to unit tests using Jest",
+  "main": "index.js",
+  "author": "ugioni",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^28.1.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html"
+    ]
+  }
+}
