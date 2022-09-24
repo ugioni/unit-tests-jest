@@ -18,5 +18,5 @@ module.exports = {
   somar,
   diminuir,
   multiplicar,
-  dividir,
+  dividir
 };
