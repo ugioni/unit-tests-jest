@@ -1,5 +1,5 @@
-const { soma } = require("../src/calculator");
+const { somar, diminuir, multiplicar, dividir } = require("../src/calculator");
 
-test("soma", async () => {
-  expect(soma(5, 10)).toStrictEqual(15);
+test("Somar dois valores válidos", async () => {
+  expect(somar(5, 10)).toStrictEqual(15);
 });
