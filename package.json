@@ -16,9 +16,7 @@
     "collectCoverage": true,
     "coverageReporters": [
       "html",
-      "lcov",
-      "clover", 
-      "json",
+      "lcov",      
       "text"
     ]
   }
