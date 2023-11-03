@@ -12,7 +12,7 @@
 
 In order to execute this project you must follow the steps below:
 
-1. Install [Node JS](https://nodejs.org/) (version >= 12.x)
+1. Install [Node JS](https://nodejs.org/) (version >= 18.x)
 1. Run `npm install` to install all the project dependencies
 1. Run `npm run test` to execute the entire test suite
 1. Run `npm run coverage` to execute the entire test suite with coverage
