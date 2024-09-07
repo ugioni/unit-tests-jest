@@ -1,13 +1,15 @@
-class ListaDeCompras {
+export class ListaDeCompras {
+    private itens: string[];
+
     constructor() {
         this.itens = [];
     }
 
-    adicionarItem(item) {
+    adicionarItem(item: string) {
         this.itens.push(item);
     }
 
-    removerItem(item) {
+    removerItem(item: string) {
         const index = this.itens.indexOf(item);
         if (index === -1) {
             throw new Error("Item não encontrado na lista");
@@ -19,5 +21,3 @@ class ListaDeCompras {
         return this.itens;
     }
 }
-
-module.exports = ListaDeCompras;
