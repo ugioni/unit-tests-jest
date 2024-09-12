@@ -2,84 +2,45 @@ import Biblioteca from '../src/Trabalho01Turma02';
 import { faker } from '@faker-js/faker';
 
 describe("Biblioteca", () => {
+    let biblioteca: Biblioteca;
+
+    beforeEach(() => {
+        biblioteca = new Biblioteca();
+    })
+
     test("Deve adicionar um livro na biblioteca", () => {
-        const biblioteca = new Biblioteca();
+        const livro = { id: 1 };
 
-        const livro = {
-            id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
-        };
-
-        biblioteca.adicionarLivro({ ...livro });
+        biblioteca.adicionarLivro(livro);
         expect(biblioteca.buscarLivroPorId(1)).toStrictEqual({ ...livro });
     });
 
     test("Deve remover um livro na biblioteca", () => {
-        const bilioteca = new Biblioteca();
+        const livro = { id: 1 };
 
-        const livro = {
-            id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
-        };
+        biblioteca.adicionarLivro(livro);
+        biblioteca.removerLivro(1);
 
-        bilioteca.adicionarLivro({ ...livro });
-        bilioteca.removerLivro(1);
-
-        expect(bilioteca.buscarLivroPorId(1)).toBeUndefined();
+        expect(biblioteca.buscarLivroPorId(1)).toBeUndefined();
     });
 
     test("Deve buscar livro pelo titulo", () => {
-        const biblioteca = new Biblioteca();
-
-        const livro = {
-            id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+        const livro = { 
+            id: 1, titulo: 
+            faker.lorem.sentence() 
         };
 
-        biblioteca.adicionarLivro({ ...livro });
+        biblioteca.adicionarLivro(livro);
 
         expect(biblioteca.buscarLivroPorTitulo(livro.titulo)[0]).toStrictEqual(livro);
     });
 
     test("Deve listar livros", () => {
-        const biblioteca = new Biblioteca();
-
-        const livro = {
-            id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
-        };
+        const livro = { id: 1 };
 
         biblioteca.adicionarLivro(livro);
 
-        const outroLivro = {
-            id: 2,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
-        };
+        const outroLivro = { id: 2 };
 
         biblioteca.adicionarLivro(outroLivro);
 
@@ -87,11 +48,7 @@ describe("Biblioteca", () => {
     });
 
     test("Deve adicionar um membro", () => {
-        const biblioteca = new Biblioteca();
-
-        const membro = {
-            id: 1
-        };
+        const membro = { id: 1 };
 
         biblioteca.adicionarMembro(membro);
 
@@ -99,11 +56,7 @@ describe("Biblioteca", () => {
     });
 
     test("Deve remover um membro", () => {
-        const biblioteca = new Biblioteca();
-
-        const membro = {
-            id: 1
-        };
+        const membro = { id: 1 };
 
         biblioteca.adicionarMembro(membro);
         biblioteca.removerMembro(1);
@@ -111,15 +64,8 @@ describe("Biblioteca", () => {
     });
 
     test("Deve listar membros", () => {
-        const biblioteca = new Biblioteca();
-
-        const membro = {
-            id: 1
-        };
-
-        const outroMembro = {
-            id: 2
-        };
+        const membro = { id: 1 };
+        const outroMembro = { id: 2 };
 
         biblioteca.adicionarMembro(membro);
         biblioteca.adicionarMembro(outroMembro);
@@ -127,18 +73,12 @@ describe("Biblioteca", () => {
     });
 
     test("Deve emprestar livro pois está disponível", () => {
-        const biblioteca = new Biblioteca();
-
         const livro = {
             id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: false,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            emprestado: false
         };
 
-        biblioteca.adicionarLivro({ ...livro });
+        biblioteca.adicionarLivro(livro);
 
         const membro = {
             id: 1
@@ -155,29 +95,19 @@ describe("Biblioteca", () => {
     });
 
     test("Nao deve emprestar livro pois não está disponível", () => {
-        const biblioteca = new Biblioteca();
-
         const livro = {
             id: 1,
-            titulo: faker.lorem.sentence(),
             emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            idMembro: 1
         };
 
         biblioteca.adicionarLivro(livro);
 
-        const membro = {
-            id: 1
-        };
+        const membro = { id: 1 };
 
         biblioteca.adicionarMembro(membro);
 
-        const outroMembro = {
-            id: 2
-        };
+        const outroMembro = { id: 2 };
 
         biblioteca.adicionarMembro(outroMembro);
 
@@ -190,16 +120,10 @@ describe("Biblioteca", () => {
     });
 
     test("Deve devolver o livro emprestado", () => {
-        const biblioteca = new Biblioteca();
-
         const livro = {
             id: 1,
-            titulo: faker.lorem.sentence(),
             emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            idMembro: 1
         };
 
         biblioteca.adicionarLivro(livro);
@@ -213,15 +137,9 @@ describe("Biblioteca", () => {
     });
 
     test("Nao deve devolver o livro pois não está emprestado", () => {
-        const biblioteca = new Biblioteca();
-
         const livro = {
             id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: false,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            emprestado: false
         };
 
         biblioteca.adicionarLivro(livro);
@@ -235,27 +153,16 @@ describe("Biblioteca", () => {
     });
 
     test("Deve listar livro emprestados", () => {
-        const biblioteca = new Biblioteca();
-
         const livro = {
             id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            emprestado: true
         };
 
         biblioteca.adicionarLivro(livro);
 
         const outroLivro = {
             id: 2,
-            titulo: faker.lorem.sentence(),
-            emprestado: false,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            emprestado: false
         };
 
         biblioteca.adicionarLivro(outroLivro);
@@ -264,27 +171,16 @@ describe("Biblioteca", () => {
     });
 
     test("Deve listar livro emprestados", () => {
-        const biblioteca = new Biblioteca();
-
         const livro = {
             id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            emprestado: true
         };
 
         biblioteca.adicionarLivro(livro);
 
         const outroLivro = {
             id: 2,
-            titulo: faker.lorem.sentence(),
-            emprestado: false,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            emprestado: false
         };
 
         biblioteca.adicionarLivro(outroLivro);
@@ -293,19 +189,9 @@ describe("Biblioteca", () => {
     });
 
     test("Deve contar os livros", () => {
-        const biblioteca = new Biblioteca();
-
         expect(biblioteca.contarLivros()).toBe(0);
 
-        const livro = {
-            id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
-        };
+        const livro = { id: 1 };
 
         biblioteca.adicionarLivro(livro);
 
@@ -317,13 +203,9 @@ describe("Biblioteca", () => {
     });
 
     test("Deve contar os membros", () => {
-        const biblioteca = new Biblioteca();
-
         expect(biblioteca.contarMembros()).toBe(0);
 
-        const membro = {
-            id: 1
-        };
+        const membro = { id: 1 };
 
         biblioteca.adicionarMembro(membro);
 
@@ -335,28 +217,16 @@ describe("Biblioteca", () => {
     });
 
     test("Deve listar o livro por autor", () => {
-        const biblioteca = new Biblioteca();
-
         const livro = {
             id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            autor: faker.person.fullName()
         };
 
         biblioteca.adicionarLivro(livro);
 
         const outroLivro = {
             id: 2,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            autor: faker.person.fullName()
         };
 
         biblioteca.adicionarLivro(outroLivro);
@@ -364,29 +234,17 @@ describe("Biblioteca", () => {
         expect(biblioteca.listarLivrosPorAutor(livro.autor)).toEqual([livro]);
     });
 
-    test("Deve listar o livro por autor", () => {
-        const biblioteca = new Biblioteca();
-
+    test("Deve listar o livro por genero", () => {
         const livro = {
             id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            genero: "fantasia"
         };
 
         biblioteca.adicionarLivro(livro);
 
         const outroLivro = {
             id: 2,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "sci-fi",
-            ano: faker.date.anytime().getFullYear()
+            genero: "sci-fi"
         };
 
         biblioteca.adicionarLivro(outroLivro);
@@ -395,16 +253,9 @@ describe("Biblioteca", () => {
     });
 
     test("Deve atualizar o livro", () => {
-        const biblioteca = new Biblioteca();
-
         const livro = {
             id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            titulo: faker.lorem.sentence()
         };
 
         biblioteca.adicionarLivro(livro);
@@ -416,8 +267,6 @@ describe("Biblioteca", () => {
     });
 
     test("Nao deve atualizar um livro que não existe", () => {
-        const biblioteca = new Biblioteca();
-
         const novoTitulo = faker.lorem.sentence();
         biblioteca.atualizarInformacaoLivro(1, { titulo: novoTitulo })
 
@@ -425,28 +274,16 @@ describe("Biblioteca", () => {
     });
 
     test("Deve listar os livros por ano", () => {
-        const biblioteca = new Biblioteca();
-
         const livro = {
             id: 1,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "fantasia",
-            ano: faker.date.anytime().getFullYear()
+            ano: 2020
         };
 
         biblioteca.adicionarLivro(livro);
 
         const outroLivro = {
             id: 2,
-            titulo: faker.lorem.sentence(),
-            emprestado: true,
-            idMembro: 1,
-            autor: faker.person.fullName(),
-            genero: "sci-fi",
-            ano: faker.date.anytime().getFullYear()
+            ano: 2021
         };
 
         biblioteca.adicionarLivro(outroLivro);
@@ -454,16 +291,3 @@ describe("Biblioteca", () => {
         expect(biblioteca.listarLivrosPorAno(livro.ano)).toEqual([livro]);
     });
 });
-
-// livro
-// id number
-// titulo string
-// emprestado boolean
-// idMembro number
-// autor: string
-// genero: string
-// ano: number
-
-
-// membro
-// id
