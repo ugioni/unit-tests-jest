@@ -1,8 +1,8 @@
-export class Carro {
-    private marca: string;
-    private modelo: string;
-    private ano: number;
-    private kilometragem: number;
+export default class Carro {
+    public marca: string;
+    public modelo: string;
+    public ano: number;
+    public kilometragem: number;
 
     constructor(marca: string, modelo: string, ano: number) {
         this.marca = marca;

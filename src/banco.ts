@@ -5,11 +5,11 @@ type Transacao = {
     descricao?: string;
 }
 
-export class Banco {
+export default class Banco {
     private nome: string;
     private saldo: number;
     private transacoes: Transacao[];
-    private limiteDeSaque: number;
+    private limiteDeSaque?: number;
 
     constructor(nome: string, saldoInicial = 0) {
         this.nome = nome;
@@ -58,7 +58,7 @@ export class Banco {
 
     // Método 7: Verificar se saque está dentro do limite
     verificarLimiteDeSaque(valor: number) {
-        if (valor > this.limiteDeSaque) {
+        if (valor > this.limiteDeSaque!) {
             throw new Error('Saque acima do limite permitido');
         }
         return true;

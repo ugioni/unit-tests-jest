@@ -1,4 +1,4 @@
-export class ListaDeCompras {
+export default class ListaDeCompras {
     private itens: string[];
 
     constructor() {

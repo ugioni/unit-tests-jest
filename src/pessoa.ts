@@ -1,6 +1,6 @@
-export class Pessoa {
-    private nome: string;
-    private idade: number;
+export default class Pessoa {
+    public nome: string;
+    public idade: number;
 
     constructor(nome: string, idade: number) {
         this.nome = nome;
