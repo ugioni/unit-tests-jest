@@ -1,4 +1,4 @@
-const { isAnagram } = require("../src/anagram");
+import { isAnagram } from "../src/anagram";
 
 test("Validando anagrama válido", async () => {
   expect(isAnagram("satc", "ctas")).toBeTruthy();
