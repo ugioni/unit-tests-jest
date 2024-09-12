@@ -6,3 +6,4 @@ function formatStr(str: string) {
   return str.replace(/[^\w]/g, "").toLowerCase().split("").sort().join("");
 }
 
+
