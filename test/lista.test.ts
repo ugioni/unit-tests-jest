@@ -1,7 +1,7 @@
-const ListaDeCompras = require('../src/lista');
+import ListaDeCompras from "../src/lista";
 
 describe('Testes da classe ListaDeCompras', () => {
-    let lista;
+    let lista: ListaDeCompras;
 
     beforeEach(() => {
         lista = new ListaDeCompras();
@@ -25,7 +25,7 @@ describe('Testes da classe ListaDeCompras', () => {
     test('Deve lançar um erro específico ao tentar remover um item inexistente', () => {
         try {
             lista.removerItem('Manteiga');
-        } catch (e) {
+        } catch (e: any) {
             expect(e.message).toBe("Item não encontrado na lista");
         }
     });

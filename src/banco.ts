@@ -1,19 +1,31 @@
-class Banco {
-    constructor(nome, saldoInicial = 0) {
+type Transacao = {
+    tipo: string;
+    valor: number;
+    destino?: string;
+    descricao?: string;
+}
+
+export default class Banco {
+    private nome: string;
+    private saldo: number;
+    private transacoes: Transacao[];
+    private limiteDeSaque?: number;
+
+    constructor(nome: string, saldoInicial = 0) {
         this.nome = nome;
         this.saldo = saldoInicial;
         this.transacoes = [];
     }
 
     // Método 1: Depositar dinheiro
-    depositar(valor) {
+    depositar(valor: number) {
         this.saldo += valor;
         this.transacoes.push({ tipo: 'Depósito', valor });
         return this.saldo;
     }
 
     // Método 2: Sacar dinheiro
-    sacar(valor) {
+    sacar(valor: number) {
         if (valor > this.saldo) {
             throw new Error('Saldo insuficiente');
         }
@@ -23,7 +35,7 @@ class Banco {
     }
 
     // Método 3: Transferir dinheiro para outra conta
-    transferir(valor, contaDestino) {
+    transferir(valor: number, contaDestino: Banco) {
         this.sacar(valor);
         contaDestino.depositar(valor);
         this.transacoes.push({ tipo: 'Transferência', valor, destino: contaDestino.nome });
@@ -40,20 +52,20 @@ class Banco {
     }
 
     // Método 6: Definir limite de saque
-    definirLimiteDeSaque(valorLimite) {
+    definirLimiteDeSaque(valorLimite: number) {
         this.limiteDeSaque = valorLimite;
     }
 
     // Método 7: Verificar se saque está dentro do limite
-    verificarLimiteDeSaque(valor) {
-        if (valor > this.limiteDeSaque) {
+    verificarLimiteDeSaque(valor: number) {
+        if (valor > this.limiteDeSaque!) {
             throw new Error('Saque acima do limite permitido');
         }
         return true;
     }
 
     // Método 8: Aplicar juros ao saldo
-    aplicarJuros(taxa) {
+    aplicarJuros(taxa: number) {
         const juros = this.saldo * (taxa / 100);
         this.saldo += juros;
         this.transacoes.push({ tipo: 'Juros', valor: juros });
@@ -61,7 +73,7 @@ class Banco {
     }
 
     // Método 9: Pagar uma conta
-    pagarConta(valor, descricao) {
+    pagarConta(valor: number, descricao: string) {
         this.sacar(valor);
         this.transacoes.push({ tipo: 'Pagamento', valor, descricao });
         return this.saldo;
@@ -75,5 +87,3 @@ class Banco {
     }
 }
 
-// Exportando a classe para ser usada em outros arquivos ou em testes
-module.exports = Banco;

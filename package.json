@@ -7,18 +7,26 @@
   "license": "ISC",
   "dependencies": {
     "jest": "^29.7.0",
-    "rimraf": "^6.0.1",
-    "mkdirp": "^3.0.1"
+    "mkdirp": "^3.0.1",
+    "rimraf": "^6.0.1"
   },
   "scripts": {
     "clean": "rimraf ./coverage && mkdirp ./coverage",
     "test": "npm run clean && jest",
+    "test:watch": "npm run clean && jest --watch",
     "coverage": "npm run clean && jest --coverage"
   },
   "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
     "coverageReporters": [
       "lcov",
       "text"
     ]
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.2"
   }
 }

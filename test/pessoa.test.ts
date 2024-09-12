@@ -1,7 +1,7 @@
-const Pessoa = require('../src/pessoa');
+import Pessoa from "../src/pessoa";
 
 describe('Testes da classe Pessoa', () => {
-    let pessoa;
+    let pessoa: Pessoa;
 
     beforeEach(() => {
         pessoa = new Pessoa('Maria', 30);

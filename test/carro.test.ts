@@ -1,7 +1,7 @@
-const Carro = require('../src/carro');
+import Carro from "../src/carro";
 
 describe('Testes da classe Carro', () => {
-    let carro;
+    let carro: Carro;
 
     beforeEach(() => {
         carro = new Carro('Toyota', 'Corolla', 2020);

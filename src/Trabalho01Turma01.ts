@@ -1,24 +1,37 @@
-class GerenciadorDeTarefas {
+export type Tarefa = {
+    id: number;
+    concluida?: boolean;
+    descricao: string;
+    data?: Date;
+    tags?: string[];
+    prioridade?: number;
+}
+
+type CriarTarefaDto = Omit<Tarefa, "id">
+
+export class GerenciadorDeTarefas {
+    public tarefas: Tarefa[];
+
     constructor() {
         this.tarefas = [];
     }
 
-    adicionarTarefa(tarefa) {
+    adicionarTarefa(tarefa: Tarefa) {
         if (tarefa.descricao.length <= 3) {
             throw new Error('Erro ao cadastrar tarefa');
         }
         this.tarefas.push(tarefa);
     }
 
-    removerTarefa(id) {
+    removerTarefa(id: number) {
         this.tarefas = this.tarefas.filter(tarefa => tarefa.id !== id);
     }
 
-    buscarTarefaPorId(id) {
+    buscarTarefaPorId(id: number) {
         return this.tarefas.find(tarefa => tarefa.id === id);
     }
 
-    atualizarTarefa(id, novosDados) {
+    atualizarTarefa(id: number, novosDados: CriarTarefaDto) {
         const index = this.tarefas.findIndex(tarefa => tarefa.id === id);
         if (index !== -1) {
             this.tarefas[index] = { ...this.tarefas[index], ...novosDados };
@@ -33,7 +46,7 @@ class GerenciadorDeTarefas {
         return this.tarefas.length;
     }
 
-    marcarTarefaComoConcluida(id) {
+    marcarTarefaComoConcluida(id: number) {
         const tarefa = this.buscarTarefaPorId(id);
         if (tarefa) {
             tarefa.concluida = true;
@@ -52,11 +65,11 @@ class GerenciadorDeTarefas {
         this.tarefas = this.tarefas.filter(tarefa => !tarefa.concluida);
     }
 
-    buscarTarefaPorDescricao(descricao) {
+    buscarTarefaPorDescricao(descricao: string) {
         return this.tarefas.filter(tarefa => tarefa.descricao.includes(descricao));
     }
 
-    adicionarTagATarefa(id, tag) {
+    adicionarTagATarefa(id: number, tag: string) {
         const tarefa = this.buscarTarefaPorId(id);
         if (tarefa) {
             tarefa.tags = tarefa.tags || [];
@@ -64,33 +77,33 @@ class GerenciadorDeTarefas {
         }
     }
 
-    removerTagDaTarefa(id, tag) {
+    removerTagDaTarefa(id: number, tag: string) {
         const tarefa = this.buscarTarefaPorId(id);
         if (tarefa && tarefa.tags) {
             tarefa.tags = tarefa.tags.filter(t => t !== tag);
         }
     }
 
-    listarTarefasPorTag(tag) {
+    listarTarefasPorTag(tag: string) {
         return this.tarefas.filter(tarefa => tarefa.tags && tarefa.tags.includes(tag));
     }
 
-    buscarTarefasPorData(data) {
+    buscarTarefasPorData(data: Date) {
         return this.tarefas.filter(tarefa => tarefa.data === data);
     }
 
-    atualizarPrioridade(id, novaPrioridade) {
+    atualizarPrioridade(id: number, novaPrioridade: number) {
         const tarefa = this.buscarTarefaPorId(id);
         if (tarefa) {
             tarefa.prioridade = novaPrioridade;
         }
     }
 
-    listarTarefasPorPrioridade(prioridade) {
+    listarTarefasPorPrioridade(prioridade: number) {
         return this.tarefas.filter(tarefa => tarefa.prioridade === prioridade);
     }
 
-    contarTarefasPorPrioridade(prioridade) {
+    contarTarefasPorPrioridade(prioridade: number) {
         return this.tarefas.filter(tarefa => tarefa.prioridade === prioridade).length;
     }
 
@@ -100,7 +113,7 @@ class GerenciadorDeTarefas {
         });
     }
 
-    reabrirTarefa(id) {
+    reabrirTarefa(id: number) {
         const tarefa = this.buscarTarefaPorId(id);
         if (tarefa) {
             tarefa.concluida = false;
@@ -108,12 +121,10 @@ class GerenciadorDeTarefas {
     }
 
     ordenarTarefasPorData() {
-        this.tarefas.sort((a, b) => new Date(a.data) - new Date(b.data));
+        this.tarefas.sort((a, b) => new Date(a.data!).getTime() - new Date(b.data!).getTime());
     }
 
     ordenarTarefasPorPrioridade() {
-        this.tarefas.sort((a, b) => a.prioridade - b.prioridade);
+        this.tarefas.sort((a, b) => a.prioridade! - b.prioridade!);
     }
 }
-
-module.exports = GerenciadorDeTarefas;

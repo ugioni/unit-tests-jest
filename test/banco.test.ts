@@ -1,7 +1,8 @@
-const Banco = require("../src/banco");
+import Banco from "../src/banco";
 
 describe('Testes da classe Banco', () => {
-    let conta;
+    let contaZerada: Banco;
+    let contaSaldo: Banco;
 
     beforeEach(() => {
         contaZerada = new Banco('Conta Zerada');
