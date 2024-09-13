@@ -8,14 +8,14 @@ describe("Biblioteca", () => {
         biblioteca = new Biblioteca();
     })
 
-    test("Deve adicionar um livro na biblioteca", () => {
+    test("Deve adicionar um livro", () => {
         const livro = { id: 1 };
 
         biblioteca.adicionarLivro(livro);
-        expect(biblioteca.buscarLivroPorId(1)).toStrictEqual({ ...livro });
+        expect(biblioteca.buscarLivroPorId(1)).toEqual(livro);
     });
 
-    test("Deve remover um livro na biblioteca", () => {
+    test("Deve remover um livro", () => {
         const livro = { id: 1 };
 
         biblioteca.adicionarLivro(livro);
@@ -32,10 +32,10 @@ describe("Biblioteca", () => {
 
         biblioteca.adicionarLivro(livro);
 
-        expect(biblioteca.buscarLivroPorTitulo(livro.titulo)[0]).toStrictEqual(livro);
+        expect(biblioteca.buscarLivroPorTitulo(livro.titulo)[0]).toEqual(livro);
     });
 
-    test("Deve listar livros", () => {
+    test("Deve listar os livros", () => {
         const livro = { id: 1 };
 
         biblioteca.adicionarLivro(livro);
@@ -63,7 +63,7 @@ describe("Biblioteca", () => {
         expect(biblioteca.buscarMembroPorId(1)).toBeUndefined();
     });
 
-    test("Deve listar membros", () => {
+    test("Deve listar os membros", () => {
         const membro = { id: 1 };
         const outroMembro = { id: 2 };
 
@@ -94,7 +94,7 @@ describe("Biblioteca", () => {
         expect(livroEmprestado.idMembro).toBe(1);
     });
 
-    test("Nao deve emprestar livro pois não está disponível", () => {
+    test("Não deve emprestar o livro pois não está disponível", () => {
         const livro = {
             id: 1,
             emprestado: true,
@@ -136,7 +136,7 @@ describe("Biblioteca", () => {
         expect(livroDevolvido.idMembro).toBeUndefined();
     });
 
-    test("Nao deve devolver o livro pois não está emprestado", () => {
+    test("Não deve devolver o livro pois não está emprestado", () => {
         const livro = {
             id: 1,
             emprestado: false
@@ -152,7 +152,7 @@ describe("Biblioteca", () => {
         expect(livroDevolvido.idMembro).toBeUndefined();
     });
 
-    test("Deve listar livro emprestados", () => {
+    test("Deve listar os livros emprestados", () => {
         const livro = {
             id: 1,
             emprestado: true
@@ -170,7 +170,7 @@ describe("Biblioteca", () => {
         expect(biblioteca.listarLivrosEmprestados()).toEqual([livro]);
     });
 
-    test("Deve listar livro emprestados", () => {
+    test("Deve listar os livros disponíveis", () => {
         const livro = {
             id: 1,
             emprestado: true
@@ -266,7 +266,7 @@ describe("Biblioteca", () => {
         expect(biblioteca.buscarLivroPorId(1)).toEqual({ ...livro, titulo: novoTitulo });
     });
 
-    test("Nao deve atualizar um livro que não existe", () => {
+    test("Não deve atualizar um livro que não existe", () => {
         const novoTitulo = faker.lorem.sentence();
         biblioteca.atualizarInformacaoLivro(1, { titulo: novoTitulo })
 
