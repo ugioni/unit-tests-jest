@@ -1,27 +1,54 @@
-# JEST Unit Tests
+# Trabalho 01 Automação de testes - Testes de unidade 
 
-## GitHub Actions
+## Sobre o projeto
 
-[![Build and Tests](https://github.com/ugioni/unit-tests-jest/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/ugioni/unit-tests-jest/actions/workflows/node.js.yml)
+O projeto foi desenvolvido como o primeiro trabalho da disciplina de Automação de Testes do curso de Engenharia de Software - SATC 
 
-## SonarCloud
+O objetivo era aprender o uso de testes de unidade com o framework Jest, um dos mais utilizados no mercado javascript/typescript.
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ugioni_unit-tests-jest&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ugioni_unit-tests-jest)
+## Pré requisitos para execução
 
-## Getting Started
+- Nodejs versão >= 20.x
+    (https://nodejs.org/en/download/package-manager/current)
 
-In order to execute this project you must follow the steps below:
+## Como executar
 
-1. Install [Node JS](https://nodejs.org/) (version >= 20.x)
-1. Run `npm install` to install all the project dependencies
-1. Run `npm run test` to execute the entire test suite
-1. Run `npm run coverage` to execute the entire test suite with coverage
+Instale as dependências:
 
-All execution artifacts can be found in `./coverage`, if you want to remove these files run `npm run clean`.
+```
+npm install
+```
 
-## Project Structure
-</br>
-<ul>
-    <li>src: source code</li>
-    <li>test: unit test files</li>
-</ul>
+Rode os testes
+
+```
+npm run test
+```
+
+Ou rode em watch mode
+
+```
+npm run test:watch
+```
+
+Para ver a cobertura
+
+```
+npm run coverage
+```
+
+Os artefatos gerados podem ser encontrados em ./coverge e podem ser removidos com:
+
+```
+npm run clean
+```
+
+## CI/CD
+
+O projeto possui um job no github actions para a execução dos testes em pipeline.
+
+## Feito por
+
+**Criado por:** Joel Francisco da Silva Filho
+
+Com base no reposítorio fornecido pelo professor Leandro Ugioni, disponível em: https://github.com/ugioni/unit-tests-jest
