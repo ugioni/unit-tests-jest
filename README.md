@@ -1,5 +1,11 @@
 # Trabalho 01 Automação de testes - Testes de unidade 
 
+## Github Actions
+
+[![Build and Tests](https://github.com/JoelFrancisco/JoelFrancisco-Turma02-Trabalho01/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/JoelFrancisco/JoelFrancisco-Turma02-Trabalho01/actions/workflows/node.js.yml)
+
+O projeto possui um job no github actions para a execução dos testes em pipeline.
+
 ## Sobre o projeto
 
 O projeto foi desenvolvido como o primeiro trabalho da disciplina de Automação de Testes do curso de Engenharia de Software - SATC 
@@ -42,10 +48,6 @@ Os artefatos gerados podem ser encontrados em ./coverge e podem ser removidos co
 ```
 npm run clean
 ```
-
-## CI/CD
-
-O projeto possui um job no github actions para a execução dos testes em pipeline.
 
 ## Feito por
 
