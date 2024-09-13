@@ -1,9 +1,9 @@
 {
-  "name": "unit-tests-jest",
+  "name": "joelfrancisco-turma02-trabalho01",
   "version": "1.0.0",
-  "description": "Example to unit tests using Jest",
-  "main": "index.js",
-  "author": "ugioni",
+  "description": "Trabalho01 da Turma02 da aula de automação de testes",
+  "main": "src/Trabalho01Turma02.js",
+  "author": "JoelFrancisco",
   "license": "ISC",
   "dependencies": {
     "jest": "^29.7.0",
