@@ -25,19 +25,19 @@ Instale as dependências:
 npm install
 ```
 
-Rode os testes
+Rode os testes:
 
 ```
 npm run test
 ```
 
-Ou rode em watch mode
+Ou rode em watch mode:
 
 ```
 npm run test:watch
 ```
 
-Para ver a cobertura
+Para ver a cobertura:
 
 ```
 npm run coverage
