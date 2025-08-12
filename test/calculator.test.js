@@ -15,3 +15,7 @@ test("Multiplicar dois valores válidos", async () => {
 test("Dividir dois valores válidos", async () => {
   expect(dividir(20, 10)).toStrictEqual(2);
 });
+
+test("Dividir dois valores válidos", async () => {
+  expect(dividir(100, 10)).toStrictEqual(10);
+});
