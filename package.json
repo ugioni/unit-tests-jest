@@ -16,6 +16,9 @@
     "coverage": "npm run clean && jest --coverage"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
     "coverageReporters": [
       "lcov",
       "text"
