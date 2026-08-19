@@ -1,7 +1,5 @@
 # JEST Unit Tests
 
-teste
-
 ## GitHub Actions
 
 [![Build and Tests](https://github.com/ugioni/unit-tests-jest/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/ugioni/unit-tests-jest/actions/workflows/node.js.yml)
