@@ -1,4 +1,4 @@
-const TextoUtils = require("../src/TextoUtils");
+const TextoUtils = require("../src/textoUtils");
 
 describe("TextoUtils", () => {
   let utils;
