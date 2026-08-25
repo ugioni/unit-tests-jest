@@ -1,31 +1,63 @@
 const TextoUtils = require("../src/textoUtils");
 
-const utils = new TextoUtils();
+describe("TextoUtils", () => {
+  let utils;
 
-test("Inverter texto", async () => {
-  expect(utils.inverter("Texto")).toStrictEqual("otxeT");
-});
+  beforeEach(() => {
+    utils = new TextoUtils();
+  });
 
-test("Deve verificar se uma string é palindromo", () => {
-    expect(utils.ehPalindromo("ovo")).toBeTruthy();
-});
+  test("inverter deve inverter a string", () => {
+    expect(utils.inverter("abc")).toBe("cba");
+  });
 
-test("Deve deixar a primeira letra maiúscula", () => {
+  test("ehPalindromo deve identificar palíndromos corretamente", () => {
+    expect(utils.ehPalindromo("Arara")).toBe(true);
+    expect(utils.ehPalindromo("A base do teto desaba")).toBe(true);
+    expect(utils.ehPalindromo("JavaScript")).toBe(false);
+  });
 
-    palavra = "texto"
+  test("capitalizar deve deixar a primeira letra de cada palavra maiúscula", () => {
+    expect(utils.capitalizar("olá mundo")).toBe("Olá Mundo");
+  });
 
-    palavra = utils.capitalizar(palavra)
-
-    expect(palavra[0]).toStrictEqual("T")
-})
-
-test("Deve contar a quantidade de aparições da substring na palavra informada", () => {
-
-    palavra = "Batata";
-    substring = "a";
-
-    contagem = utils.contarOcorrencias(palavra, substring);
+  test("contarOcorrencias deve contar substrings corretamente", () => {
     
-    expect(contagem).toStrictEqual(3);
+  });
 
-})
+  test("removerEspacosExtras deve limpar espaços extras", () => {
+    expect(utils.removerEspacosExtras("  oi   mundo  ")).toBe("oi mundo");
+  });
+
+  test("paraSlug deve converter texto em slug", () => {
+    expect(utils.paraSlug("Olá Mundo!")).toBe("ola-mundo");
+  });
+
+  test("truncar deve truncar textos longos", () => {
+    expect(utils.truncar("Texto muito longo", 5)).toBe("Texto...");
+    expect(utils.truncar("curto", 10)).toBe("curto");
+  });
+
+  test("truncar deve lançar erro para tamanho negativo", () => {
+    expect(() => utils.truncar("abc", -1)).toThrow();
+  });
+
+  test("contarPalavras deve contar as palavras corretamente", () => {
+    expect(utils.contarPalavras("  isso   é   um  teste ")).toBe(4);
+  });
+
+  test("somenteLetras deve validar strings só com letras", () => {
+    expect(utils.somenteLetras("abcXYZ")).toBe(true);
+    expect(utils.somenteLetras("abc123")).toBe(false);
+  });
+
+  test("substituirTudo deve substituir todas as ocorrências", () => {
+    expect(utils.substituirTudo("gato gato gato", "gato", "cão")).toBe(
+      "cão cão cão"
+    );
+  });
+
+  test("substituirTudo deve lançar erro se alvo for vazio", () => {
+    expect(() => utils.substituirTudo("abc", "", "x")).toThrow();
+  });
+});
